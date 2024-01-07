@@ -4,7 +4,9 @@ const request = require("request");
 const bodyParser = require("body-parser");
 const client = require("@mailchimp/mailchimp_marketing");
 const { response } = require("express");
+require('dotenv').config();
 
+let apiKey = process.env.MAILCHIMP_APIKEY; 
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,7 +17,7 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/signup.html")
 
     client.setConfig({
-        apiKey: "72ff030cb6957bcb33feba8259240203-us12",
+        apiKey: apiKey,
         server: "us12"
     })
 });
